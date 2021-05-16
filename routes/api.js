@@ -14,7 +14,7 @@ const authMethods = require('../utils/authMethods')
 const verifyToken = require('../hooks/verifyToken')
 
 /* Add movie*/
-router.post("/v1/movie/add", fileUpload.single('fileKey'), async function (req, res, next) {
+router.post("/v1/movie/add", fileUpload.single('fileKey'), async (req, res, next) => {
   try {
 
     if (req.file) {
@@ -30,8 +30,8 @@ router.post("/v1/movie/add", fileUpload.single('fileKey'), async function (req, 
   }
 });
 
-/* Add movie*/
-router.post("/v1/user/signup", signUp, async function (req, res, next) {
+/* User Signup */
+router.post("/v1/user/signup", signUp, async (req, res, next) => {
   try {
 
     let checkUser = await userModel.findOne({
@@ -53,8 +53,8 @@ router.post("/v1/user/signup", signUp, async function (req, res, next) {
   }
 });
 
-/* Add movie*/
-router.post("/v1/user/login", signUp, async function (req, res, next) {
+/* Login Page */
+router.post("/v1/user/login", signUp, async (req, res, next) => {
   try {
     let checkUser = await userModel.findOne({
       email: req.body.email
@@ -87,8 +87,8 @@ router.post("/v1/user/login", signUp, async function (req, res, next) {
   }
 });
 
-/* Add movie*/
-router.get("/v1/movie/list", async function (req, res, next) {
+/* Movie List All */
+router.get("/v1/movie/list", async (req, res, next) => {
   try {
     let listMovies = await movieModel.find({
       status: 1
@@ -103,8 +103,8 @@ router.get("/v1/movie/list", async function (req, res, next) {
   }
 });
 
-/* Add movie*/
-router.get("/v1/movie/list/:movieSlug", async function (req, res, next) {
+/* Add movie slug added */
+router.get("/v1/movie/list/:movieSlug", async (req, res, next) => {
   try {
     let listMovies = await movieModel.findOne({
       movieSlug: req.params.movieSlug,
@@ -126,8 +126,8 @@ router.get("/v1/movie/list/:movieSlug", async function (req, res, next) {
     next({ status: status.HTTP_INTERNAL_SERVER_ERROR, message: JSON.stringify({ message: error.message, stack: error.stack }) });
   }
 });
-
-router.post("/v1/movie/add/comment", verifyToken, addComment, async function (req, res, next) {
+/* Comment Section */
+router.post("/v1/movie/add/comment", verifyToken, addComment, async (req, res, next) => {
   try {
     console.log("req.user", req.user);
     var userId = req.user._id
