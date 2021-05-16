@@ -50,7 +50,7 @@ mongoose.connection.on("error", (err) => {
 
 app.listen(port, () => {
   console.log(
-    chalk.green.bold(`Movie Film Server listening at http://localhost:${port}`)
+    chalk.green.bold(`Filmy App Server listening at http://localhost:${port}`)
   );
 });
 

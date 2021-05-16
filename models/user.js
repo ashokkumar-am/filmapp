@@ -13,3 +13,16 @@ const UserSchema = new Schema(
     timestamps: true,
 },
 );
+
+//method to encrypt password
+UserSchema.methods.generateHash = function (password) {
+    return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
+};
+
+//method to decrypt password
+UserSchema.methods.validatePassword = function (password) {
+    var userData = this;
+    return bcrypt.compareSync(password, userData.password);
+};
+
+module.exports = mongoose.model("user", UserSchema);

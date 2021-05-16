@@ -2,25 +2,22 @@ var express = require('express');
 var router = express.Router();
 
 /* GET home page. */
-router.get('/', (req, res,) => {
-  res.render('index', { title: 'Filmy Application' });
+router.get('/', function (req, res, next) {
+  res.render('index', { title: 'Express' });
 });
 
-// Filmy View 
-router.get('/films', (req, res,) => {
-  res.render('films', { title: 'Film Page - Filmy Application' });
+router.get('/films', function (req, res, next) {
+  res.render('films', { title: 'Express' });
 });
 
-router.get('/login', (req, res,) => {
-  res.render('login', { title: 'Login Page - Filmy Application' });
+router.get('/login', function (req, res, next) {
+  res.render('login', { title: 'Express' });
+});
+router.get('/signup', function (req, res, next) {
+  res.render('register', { title: 'Express' });
 });
 
-router.get('/signup', (req, res,) => {
-  res.render('signup', { title: 'Signup Page - Filmy Application' });
+router.get('/create', function (req, res, next) {
+  res.render('create', { title: 'Express' });
 });
-
-router.get('/create', (req, res,) => {
-  res.render('create', { title: 'Movie Creating Page - Filmy Application' });
-});
-
 module.exports = router;
