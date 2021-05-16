@@ -79,7 +79,7 @@ router.post("/v1/user/login", signUp, async (req, res, next) => {
       token: generateToken
     }
 
-    console.log("checkPassword", checkPassword);
+    // console.log("checkPassword", checkPassword);
     return Response.success(req, res, status.HTTP_OK, result, "User login successfully")
   }
   catch (error) {
@@ -94,7 +94,7 @@ router.get("/v1/movie/list", async (req, res, next) => {
       status: 1
     }).lean()
 
-    console.log("listMovies", listMovies);
+    // console.log("listMovies", listMovies);
     return Response.success(req, res, status.HTTP_OK, listMovies, "Movie listed successfully")
   }
   catch (error) {
@@ -118,7 +118,7 @@ router.get("/v1/movie/list/:movieSlug", async (req, res, next) => {
         }
       }])
 
-    console.log("listMovies", listMovies);
+    // console.log("listMovies", listMovies);
     return Response.success(req, res, status.HTTP_OK, listMovies, "Movie listed successfully")
   }
   catch (error) {
@@ -129,7 +129,7 @@ router.get("/v1/movie/list/:movieSlug", async (req, res, next) => {
 /* Comment Section */
 router.post("/v1/movie/add/comment", verifyToken, addComment, async (req, res, next) => {
   try {
-    console.log("req.user", req.user);
+    // console.log("req.user", req.user);
     var userId = req.user._id
     var addComment = await movieCommentsModel.create({
       comment: req.body.comment,
