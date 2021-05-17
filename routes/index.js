@@ -3,9 +3,7 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
-  console.log('Home Page Crawling...')
   res.render('index', { title: 'Filmy App' });
-  next();
 });
 
 router.get('/films', function (req, res, next) {
