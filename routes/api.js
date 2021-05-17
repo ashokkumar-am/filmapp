@@ -13,7 +13,7 @@ const userModel = require('../models/user')
 const { generateHash } = new userModel()
 const authMethods = require('../utils/authMethods')
 const verifyToken = require('../hooks/verifyToken')
-
+router.use(cors());
 var allowlist = ['http://3.108.14.110/']
 var corsOptionsDelegate = function (req, callback) {
   var corsOptions;
