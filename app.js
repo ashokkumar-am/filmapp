@@ -1,7 +1,7 @@
 require("dotenv").config();
 var createError = require("http-errors");
 var express = require("express");
-var path = require("path");
+
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 
@@ -9,7 +9,8 @@ var indexRouter = require("./routes/index");
 var apiRouter = require("./routes/api");
 const mongoose = require("mongoose");
 const chalk = require("chalk");
-const port = process.env.port;
+const path = require("path");
+
 const mongoDbUrl = process.env.mongoDbUrl;
 var app = express();
 
@@ -48,10 +49,6 @@ mongoose.connection.on("error", (err) => {
   process.exit();
 });
 
-app.listen(port, () => {
-  console.log(
-    chalk.green.bold(`Filmy App Server listening at http://localhost:${port}`)
-  );
-});
+
 
 module.exports = app;
