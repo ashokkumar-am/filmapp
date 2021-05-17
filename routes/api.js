@@ -3,7 +3,7 @@ var router = express.Router();
 var cors = require('cors')
 const Joi = require('joi');
 const _ = require('lodash');
-const { addMovie, signUp, addComment } = require('../validator/api.validator')
+const { addMovie, signUp, addComment, loginUser } = require('../validator/api.validator')
 const Response = require("../responses/responses");
 const { messages, status } = require("../configs");
 const { fileUpload } = require('../utils/uploads')
@@ -65,7 +65,7 @@ router.post("/v1/user/signup", cors(corsOptionsDelegate), signUp, async (req, re
 });
 
 /* Login Page */
-router.post("/v1/user/login", cors(corsOptionsDelegate), signUp, async (req, res, next) => {
+router.post("/v1/user/login", cors(corsOptionsDelegate), loginUser, async (req, res, next) => {
   try {
     let checkUser = await userModel.findOne({
       email: req.body.email
