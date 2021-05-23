@@ -13,19 +13,19 @@ const userModel = require('../models/user')
 const { generateHash } = new userModel()
 const authMethods = require('../utils/authMethods')
 const verifyToken = require('../hooks/verifyToken')
-router.use(cors());
-var allowlist = ['http://3.108.14.110/']
-var corsOptionsDelegate = function (req, callback) {
-  var corsOptions;
-  if (allowlist.indexOf(req.header('Origin')) !== -1) {
-    corsOptions = { origin: true } // reflect (enable) the requested origin in the CORS response
-  } else {
-    corsOptions = { origin: false } // disable CORS for this request
-  }
-  callback(null, corsOptions) // callback expects two parameters: error and options
-}
+// router.use(cors());
+// var allowlist = ['http://3.108.14.110/']
+// var corsOptionsDelegate = function (req, callback) {
+//   var corsOptions;
+//   if (allowlist.indexOf(req.header('Origin')) !== -1) {
+//     corsOptions = { origin: true } // reflect (enable) the requested origin in the CORS response
+//   } else {
+//     corsOptions = { origin: false } // disable CORS for this request
+//   }
+//   callback(null, corsOptions) // callback expects two parameters: error and options
+// }
 /* Add movie*/
-router.post("/v1/movie/add", cors(corsOptionsDelegate), fileUpload.single('fileKey'), async (req, res, next) => {
+router.post("/v1/movie/add", fileUpload.single('fileKey'), async (req, res, next) => {
   try {
 
     if (req.file) {
@@ -42,7 +42,7 @@ router.post("/v1/movie/add", cors(corsOptionsDelegate), fileUpload.single('fileK
 });
 
 /* User Signup */
-router.post("/v1/user/signup", cors(corsOptionsDelegate), signUp, async (req, res, next) => {
+router.post("/v1/user/signup", signUp, async (req, res, next) => {
   try {
 
     let checkUser = await userModel.findOne({
@@ -65,7 +65,7 @@ router.post("/v1/user/signup", cors(corsOptionsDelegate), signUp, async (req, re
 });
 
 /* Login Page */
-router.post("/v1/user/login", cors(corsOptionsDelegate), loginUser, async (req, res, next) => {
+router.post("/v1/user/login", loginUser, async (req, res, next) => {
   try {
     let checkUser = await userModel.findOne({
       email: req.body.email
@@ -99,7 +99,7 @@ router.post("/v1/user/login", cors(corsOptionsDelegate), loginUser, async (req, 
 });
 
 /* Movie List All */
-router.get("/v1/movie/list", cors(corsOptionsDelegate), async (req, res, next) => {
+router.get("/v1/movie/list", async (req, res, next) => {
   try {
     let listMovies = await movieModel.find({
       status: 1
@@ -115,7 +115,7 @@ router.get("/v1/movie/list", cors(corsOptionsDelegate), async (req, res, next) =
 });
 
 /* Add movie slug added */
-router.get("/v1/movie/list/:movieSlug", cors(corsOptionsDelegate), async (req, res, next) => {
+router.get("/v1/movie/list/:movieSlug", async (req, res, next) => {
   try {
     let listMovies = await movieModel.findOne({
       movieSlug: req.params.movieSlug,
@@ -138,7 +138,7 @@ router.get("/v1/movie/list/:movieSlug", cors(corsOptionsDelegate), async (req, r
   }
 });
 /* Comment Section */
-router.post("/v1/movie/add/comment", verifyToken, addComment, cors(corsOptionsDelegate), async (req, res, next) => {
+router.post("/v1/movie/add/comment", verifyToken, addComment, async (req, res, next) => {
   try {
     // console.log("req.user", req.user);
     var userId = req.user._id

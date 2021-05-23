@@ -3,23 +3,23 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
-  res.render('index', { title: 'Filmy App' });
+  res.render('index');
 });
 
-router.get('/films', function (req, res, next) {
-  res.render('films', { title: 'Filmy App' });
-});
+// router.get('/films', function (req, res, next) {
+//   res.render('films');
+// });
 
-router.get('/login', function (req, res, next) {
-  res.render('login', { title: 'Filmy App' });
-});
-router.get('/signup', function (req, res, next) {
-  res.render('register', { title: 'Filmy App' });
-});
+// router.get('/login', function (req, res, next) {
+//   res.render('login');
+// });
+// router.get('/signup', function (req, res, next) {
+//   res.render('register');
+// });
 
-router.get('/create', function (req, res, next) {
-  res.render('create', { title: 'Filmy App' });
-});
+// router.get('/create', function (req, res, next) {
+//   res.render('create');
+// });
 
 // app.use('/verify', function (req, res, next) {
 //   console.log("Authenticate and Redirect")
